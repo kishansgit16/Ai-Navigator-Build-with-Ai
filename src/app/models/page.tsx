@@ -7,11 +7,9 @@ import {
   Search, 
   ArrowUpDown, 
   Calculator, 
-  HelpCircle, 
   Flame, 
   Check, 
   Layers, 
-  DollarSign, 
   Clock, 
   BookOpen 
 } from 'lucide-react';
@@ -51,13 +49,13 @@ export default function ModelAnalytics() {
   });
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-10 pb-16">
       {/* Page Header */}
-      <div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl bg-gradient-to-r from-white via-slate-200 to-indigo-400 bg-clip-text text-transparent">
+      <div className="space-y-2">
+        <h1 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl bg-gradient-to-r from-white via-slate-200 to-blue-400 bg-clip-text text-transparent">
           AI Model Analytics
         </h1>
-        <p className="text-gray-400 text-sm mt-1">
+        <p className="text-gray-400 text-sm mt-1 max-w-2xl leading-relaxed">
           Deep comparison of performance scores, context windows, speed, and real-time API cost simulations.
         </p>
       </div>
@@ -66,17 +64,20 @@ export default function ModelAnalytics() {
       <motion.div 
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glass-card p-6 rounded-2xl border border-indigo-500/10 bg-gradient-to-r from-slate-950 via-slate-900/60 to-slate-950"
+        className="glass-card p-6 md:p-8 rounded-2xl border border-blue-500/10 bg-gradient-to-b from-zinc-900/30 to-zinc-950/30 shadow-[0_12px_40px_rgba(0,0,0,0.3)]"
       >
-        <div className="flex items-center gap-2 mb-4">
-          <Calculator className="text-indigo-400" size={20} />
-          <h2 className="text-base font-bold text-white">Interactive API Cost Simulator</h2>
+        <div className="flex items-center gap-2.5 mb-6">
+          <Calculator className="text-blue-400" size={18} />
+          <h2 className="text-sm font-bold text-white uppercase tracking-wider">Interactive API Cost Simulator</h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-          <div className="space-y-2">
-            <label className="text-xs text-gray-400 font-semibold block">Input Volume (Millions of Tokens)</label>
-            <div className="flex items-center gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center border-b border-white/[0.04] pb-6">
+          <div className="space-y-3">
+            <div className="flex justify-between">
+              <label className="text-xs text-gray-400 font-semibold block">Input Volume (Prompt)</label>
+              <span className="text-xs font-bold text-blue-400">{inputTokensMillions.toFixed(1)}M Tokens</span>
+            </div>
+            <div className="flex items-center gap-4">
               <input 
                 type="range" 
                 min="0.1" 
@@ -84,17 +85,17 @@ export default function ModelAnalytics() {
                 step="0.1"
                 value={inputTokensMillions} 
                 onChange={(e) => setInputTokensMillions(parseFloat(e.target.value))}
-                className="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+                className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-blue-500"
               />
-              <span className="text-sm font-mono text-white bg-white/5 border border-white/10 px-2 py-1 rounded w-16 text-center">
-                {inputTokensMillions.toFixed(1)}M
-              </span>
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-xs text-gray-400 font-semibold block">Output Volume (Millions of Tokens)</label>
-            <div className="flex items-center gap-3">
+          <div className="space-y-3">
+            <div className="flex justify-between">
+              <label className="text-xs text-gray-400 font-semibold block">Output Volume (Completion)</label>
+              <span className="text-xs font-bold text-purple-400">{outputTokensMillions.toFixed(1)}M Tokens</span>
+            </div>
+            <div className="flex items-center gap-4">
               <input 
                 type="range" 
                 min="0.1" 
@@ -102,17 +103,14 @@ export default function ModelAnalytics() {
                 step="0.1"
                 value={outputTokensMillions} 
                 onChange={(e) => setOutputTokensMillions(parseFloat(e.target.value))}
-                className="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-purple-500"
+                className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-purple-500"
               />
-              <span className="text-sm font-mono text-white bg-white/5 border border-white/10 px-2 py-1 rounded w-16 text-center">
-                {outputTokensMillions.toFixed(1)}M
-              </span>
             </div>
           </div>
 
-          <div className="p-3 bg-white/5 rounded-xl border border-white/5 text-center">
-            <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">Total Simulation Size</span>
-            <span className="block text-lg font-bold text-white mt-0.5">{(inputTokensMillions + outputTokensMillions).toFixed(1)} Million Tokens</span>
+          <div className="p-4 bg-white/[0.02] border border-white/[0.04] rounded-2xl text-center">
+            <span className="text-[9px] uppercase font-bold text-gray-500 tracking-widest block">Total Simulation Size</span>
+            <span className="block text-xl font-black text-white mt-1">{(inputTokensMillions + outputTokensMillions).toFixed(1)} Million Tokens</span>
           </div>
         </div>
 
@@ -120,11 +118,11 @@ export default function ModelAnalytics() {
         <div className="mt-6 overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="border-b border-gray-800/40 text-gray-400">
-                <th className="py-2 font-medium">Model</th>
-                <th className="py-2 font-medium">Input Cost</th>
-                <th className="py-2 font-medium">Output Cost</th>
-                <th className="py-2 font-medium text-right">Estimated Total Cost</th>
+              <tr className="border-b border-white/[0.04] text-gray-500 uppercase font-bold tracking-wider text-[10px]">
+                <th className="py-3 font-semibold">Model</th>
+                <th className="py-3 font-semibold">Input Cost</th>
+                <th className="py-3 font-semibold">Output Cost</th>
+                <th className="py-3 font-semibold text-right">Estimated Total Cost</th>
               </tr>
             </thead>
             <tbody>
@@ -133,11 +131,11 @@ export default function ModelAnalytics() {
                 const outCost = m.costOutputPerM * outputTokensMillions;
                 const total = inCost + outCost;
                 return (
-                  <tr key={m.id} className="border-b border-gray-900/30 text-gray-300">
-                    <td className="py-2 font-semibold text-white">{m.name}</td>
-                    <td className="py-2">${inCost.toFixed(2)}</td>
-                    <td className="py-2">${outCost.toFixed(2)}</td>
-                    <td className="py-2 font-bold text-right text-indigo-400">${total.toFixed(2)}</td>
+                  <tr key={m.id} className="border-b border-white/[0.02] text-gray-300 hover:bg-white/[0.01] transition-colors">
+                    <td className="py-3 font-bold text-white">{m.name}</td>
+                    <td className="py-3">${inCost.toFixed(2)}</td>
+                    <td className="py-3">${outCost.toFixed(2)}</td>
+                    <td className="py-3 font-extrabold text-right text-blue-400">${total.toFixed(2)}</td>
                   </tr>
                 );
               })}
@@ -147,17 +145,17 @@ export default function ModelAnalytics() {
       </motion.div>
 
       {/* Control Bar: Search & Sort Filters */}
-      <div className="flex flex-col md:flex-row gap-4 justify-between items-center bg-white/5 border border-white/10 p-4 rounded-xl">
+      <div className="flex flex-col md:flex-row gap-4 justify-between items-center bg-white/[0.02] border border-white/[0.05] p-4 rounded-2xl">
         <div className="relative w-full md:w-80">
-          <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-            <Search size={16} />
+          <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-500">
+            <Search size={14} />
           </span>
           <input
             type="text"
             placeholder="Search models or providers..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 text-sm bg-gray-950 border border-white/10 rounded-xl focus:border-indigo-500/60 focus:outline-none text-white placeholder-gray-500"
+            className="w-full pl-9 pr-4 py-2.5 text-xs bg-zinc-950 border border-white/5 rounded-xl focus:border-blue-500/60 focus:outline-none text-white placeholder-gray-500 transition-colors"
           />
         </div>
 
@@ -171,10 +169,10 @@ export default function ModelAnalytics() {
             <button
               key={item.field}
               onClick={() => handleSort(item.field)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl border text-xs font-semibold transition-all ${
                 sortBy === item.field
-                  ? 'bg-indigo-600 border-indigo-500 text-white'
-                  : 'bg-transparent border-white/10 text-gray-400 hover:text-white'
+                  ? 'bg-blue-600 border-blue-500 text-white shadow-md'
+                  : 'bg-transparent border-white/5 text-gray-400 hover:text-white hover:bg-white/[0.02]'
               }`}
             >
               <span>{item.label}</span>
@@ -185,53 +183,53 @@ export default function ModelAnalytics() {
       </div>
 
       {/* Models Grid + Detail Split Panel */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Left Column: Models List Cards */}
-        <div className="lg:col-span-7 space-y-3">
+        <div className="lg:col-span-7 space-y-4">
           {filteredModels.map((model) => (
             <motion.div
               layoutId={`card-${model.id}`}
               key={model.id}
               onClick={() => setSelectedModel(model)}
-              className={`glass-card p-4 rounded-2xl border cursor-pointer relative flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${
+              className={`glass-card p-5 rounded-2xl border cursor-pointer relative flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${
                 selectedModel?.id === model.id
-                  ? 'border-indigo-500 bg-indigo-950/20'
+                  ? 'border-blue-500/40 bg-blue-950/10'
                   : 'border-white/5'
               }`}
             >
               {/* Basic spec summary */}
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center font-bold text-white text-base">
+                <div className="h-10 w-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center font-bold text-white text-sm">
                   {model.logo}
                 </div>
                 <div>
-                  <h3 className="font-bold text-white text-sm">{model.name}</h3>
-                  <span className="text-xs text-gray-500">{model.provider}</span>
+                  <h3 className="font-bold text-white text-xs">{model.name}</h3>
+                  <span className="text-[10px] text-gray-500 font-semibold">{model.provider}</span>
                 </div>
               </div>
 
               {/* Data points */}
-              <div className="flex gap-6 text-xs w-full md:w-auto justify-between md:justify-end border-t border-gray-900/60 pt-3 md:pt-0 md:border-0">
+              <div className="flex gap-6 text-xs w-full md:w-auto justify-between md:justify-end border-t border-white/[0.04] md:border-0 pt-4 md:pt-0">
                 <div className="text-center">
-                  <span className="text-gray-500 block text-[10px] uppercase font-bold tracking-wider">Score</span>
-                  <span className="font-bold text-indigo-400">{model.performanceScore}/100</span>
+                  <span className="text-gray-500 block text-[9px] uppercase font-bold tracking-wider">Score</span>
+                  <span className="font-bold text-blue-400">{model.performanceScore}/100</span>
                 </div>
                 <div className="text-center">
-                  <span className="text-gray-500 block text-[10px] uppercase font-bold tracking-wider">Context</span>
-                  <span className="font-semibold text-gray-200">
+                  <span className="text-gray-500 block text-[9px] uppercase font-bold tracking-wider">Context</span>
+                  <span className="font-bold text-gray-200">
                     {model.contextWindow >= 1000000 
                       ? `${(model.contextWindow / 1000000).toFixed(0)}M` 
                       : `${model.contextWindow / 1000}k`}
                   </span>
                 </div>
                 <div className="text-center">
-                  <span className="text-gray-500 block text-[10px] uppercase font-bold tracking-wider">Price/1M</span>
-                  <span className="font-mono text-emerald-400 font-semibold">${model.costInputPerM.toFixed(2)}</span>
+                  <span className="text-gray-500 block text-[9px] uppercase font-bold tracking-wider">Price/1M</span>
+                  <span className="font-mono text-emerald-400 font-bold">${model.costInputPerM.toFixed(2)}</span>
                 </div>
                 <div className="text-center">
-                  <span className="text-gray-500 block text-[10px] uppercase font-bold tracking-wider">Speed</span>
-                  <span className="font-semibold text-gray-200">{model.speedTokensPerSec} t/s</span>
+                  <span className="text-gray-500 block text-[9px] uppercase font-bold tracking-wider">Speed</span>
+                  <span className="font-bold text-gray-200">{model.speedTokensPerSec} t/s</span>
                 </div>
               </div>
             </motion.div>
@@ -244,25 +242,25 @@ export default function ModelAnalytics() {
             {selectedModel ? (
               <motion.div
                 key={selectedModel.id}
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                className="glass-card p-6 rounded-2xl border border-white/10 sticky top-6 space-y-6"
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.3 }}
+                className="glass-card p-6 md:p-8 rounded-2xl border border-white/10 sticky top-6 space-y-6 shadow-xl"
               >
                 {/* Header */}
                 <div className="flex justify-between items-start gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="h-12 w-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center font-bold text-white text-lg">
+                    <div className="h-11 w-11 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center font-bold text-white text-base">
                       {selectedModel.logo}
                     </div>
                     <div>
-                      <h2 className="text-lg font-bold text-white">{selectedModel.name}</h2>
+                      <h2 className="text-base font-bold text-white tracking-tight">{selectedModel.name}</h2>
                       <p className="text-xs text-gray-500">Provided by {selectedModel.provider}</p>
                     </div>
                   </div>
-                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                    Release: {selectedModel.releaseDate}
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                    {selectedModel.releaseDate}
                   </span>
                 </div>
 
@@ -272,32 +270,32 @@ export default function ModelAnalytics() {
                 </p>
 
                 {/* Capability Bars */}
-                <div className="space-y-3">
-                  <h3 className="text-xs font-bold text-white uppercase tracking-wider text-gray-500">Capability Breakdown</h3>
+                <div className="space-y-4">
+                  <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Capability Breakdown</h3>
                   {[
-                    { label: 'Reasoning', val: selectedModel.reasoningScore, color: 'bg-indigo-500' },
-                    { label: 'Coding Performance', val: selectedModel.codingScore, color: 'bg-cyan-500' },
-                    { label: 'Vision Capabilities', val: selectedModel.visionScore, color: 'bg-purple-500' },
-                    { label: 'Mathematics', val: selectedModel.mathScore, color: 'bg-pink-500' }
+                    { label: 'Reasoning', val: selectedModel.reasoningScore, color: 'bg-blue-500' },
+                    { label: 'Coding Performance', val: selectedModel.codingScore, color: 'bg-purple-500' },
+                    { label: 'Vision Capabilities', val: selectedModel.visionScore, color: 'bg-cyan-500' },
+                    { label: 'Mathematics', val: selectedModel.mathScore, color: 'bg-indigo-500' }
                   ].map((cap) => (
-                    <div key={cap.label} className="space-y-1">
-                      <div className="flex justify-between text-xs font-medium">
+                    <div key={cap.label} className="space-y-1.5">
+                      <div className="flex justify-between text-xs font-semibold">
                         <span className="text-gray-400">{cap.label}</span>
-                        <span className="text-white font-bold">{cap.val}/100</span>
+                        <span className="text-white font-extrabold">{cap.val}/100</span>
                       </div>
-                      <div className="w-full bg-gray-900 rounded-full h-1.5 overflow-hidden border border-white/5">
-                        <div className={`h-full ${cap.color}`} style={{ width: `${cap.val}%` }} />
+                      <div className="w-full bg-zinc-950 rounded-full h-1.5 overflow-hidden border border-white/[0.02]">
+                        <div className={`h-full ${cap.color} rounded-full`} style={{ width: `${cap.val}%` }} />
                       </div>
                     </div>
                   ))}
                 </div>
 
                 {/* Multimodal Support Chips */}
-                <div className="space-y-2">
-                  <h3 className="text-xs font-bold text-white uppercase tracking-wider text-gray-500">Multimodal Input Support</h3>
-                  <div className="flex flex-wrap gap-1.5">
+                <div className="space-y-3">
+                  <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Multimodal Input Support</h3>
+                  <div className="flex flex-wrap gap-2">
                     {selectedModel.multimodalSupport.map((mod) => (
-                      <span key={mod} className="text-[10px] font-bold uppercase tracking-wider bg-white/5 border border-white/10 px-2 py-0.5 rounded text-gray-300">
+                      <span key={mod} className="text-[9px] font-bold uppercase tracking-wider bg-white/[0.02] border border-white/5 px-2.5 py-1 rounded-lg text-gray-300">
                         {mod}
                       </span>
                     ))}
@@ -305,24 +303,24 @@ export default function ModelAnalytics() {
                 </div>
 
                 {/* Release History timeline */}
-                <div className="space-y-3 border-t border-gray-900/60 pt-4">
-                  <h3 className="text-xs font-bold text-white uppercase tracking-wider text-gray-500">Release Changelog</h3>
-                  <div className="space-y-3">
+                <div className="space-y-4 border-t border-white/[0.05] pt-5">
+                  <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Release Changelog</h3>
+                  <div className="space-y-4">
                     {selectedModel.releaseHistory.map((hist, idx) => (
-                      <div key={idx} className="relative pl-4 border-l border-indigo-500/30 text-xs">
-                        <div className="absolute left-0 top-1.5 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-indigo-500" />
-                        <div className="flex justify-between text-gray-400 font-semibold text-[11px]">
+                      <div key={idx} className="relative pl-5 border-l border-blue-500/20 text-xs">
+                        <div className="absolute left-0 top-1.5 -translate-x-[4px] w-2 h-2 rounded-full bg-blue-500" />
+                        <div className="flex justify-between text-gray-400 font-bold text-[10px] uppercase tracking-wider">
                           <span>{hist.version}</span>
                           <span>{hist.date}</span>
                         </div>
-                        <p className="text-gray-500 mt-0.5 leading-relaxed">{hist.changes}</p>
+                        <p className="text-gray-500 mt-1 leading-relaxed">{hist.changes}</p>
                       </div>
                     ))}
                   </div>
                 </div>
               </motion.div>
             ) : (
-              <div className="glass-card p-6 rounded-2xl border border-white/10 text-center text-gray-500 py-16">
+              <div className="glass-card p-8 rounded-2xl border border-white/5 text-center text-gray-500 py-24 shadow-md">
                 Select a model from the list to see granular details, capability breakdowns, and release logs.
               </div>
             )}

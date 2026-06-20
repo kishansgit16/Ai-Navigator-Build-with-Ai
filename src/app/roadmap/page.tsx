@@ -5,11 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { generateRoadmap, RoadmapItem } from '@/lib/mockData';
 import { 
   Sparkles, 
-  MapPin, 
   BookOpen, 
-  CheckCircle2, 
   ArrowRight, 
-  Download, 
   RefreshCw, 
   Copy, 
   Check 
@@ -65,13 +62,13 @@ export default function RoadmapGenerator() {
   };
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-10 pb-16">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl bg-gradient-to-r from-white via-slate-200 to-indigo-400 bg-clip-text text-transparent">
-          Personalized AI Roadmap Generator
+      <div className="space-y-2">
+        <h1 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl bg-gradient-to-r from-white via-slate-200 to-blue-400 bg-clip-text text-transparent">
+          AI Roadmap Generator
         </h1>
-        <p className="text-gray-400 text-sm mt-1">
+        <p className="text-gray-400 text-sm mt-1 max-w-2xl leading-relaxed">
           Specify your objectives, skill level, and industry targets to construct a custom-tailored weekly learning path.
         </p>
       </div>
@@ -81,8 +78,8 @@ export default function RoadmapGenerator() {
         {/* Left Column: Form Parameters */}
         <div className="lg:col-span-4">
           <form onSubmit={handleGenerate} className="glass-card p-6 rounded-2xl border border-white/5 space-y-6">
-            <h2 className="text-base font-bold text-white flex items-center gap-2">
-              <Sparkles className="text-indigo-400" size={16} /> Roadmap Parameters
+            <h2 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+              <Sparkles className="text-blue-400" size={15} /> Setup Parameters
             </h2>
 
             {/* Goal Input */}
@@ -91,7 +88,7 @@ export default function RoadmapGenerator() {
               <select
                 value={goal}
                 onChange={(e) => setGoal(e.target.value)}
-                className="w-full text-xs bg-gray-950 border border-white/10 text-white p-3 rounded-xl focus:outline-none focus:border-indigo-500 font-medium"
+                className="w-full text-xs bg-zinc-950 border border-white/10 text-white p-3.5 rounded-xl focus:outline-none focus:border-blue-500 font-semibold transition-colors"
               >
                 <option value="Build AI SaaS">Build AI SaaS / Web Application</option>
                 <option value="Learn Machine Learning">Learn Machine Learning & Foundations</option>
@@ -109,10 +106,10 @@ export default function RoadmapGenerator() {
                     key={lvl}
                     type="button"
                     onClick={() => setLevel(lvl)}
-                    className={`py-2 rounded-lg text-xs font-semibold border transition-all ${
+                    className={`py-2.5 rounded-xl text-xs font-semibold border transition-all ${
                       level === lvl
-                        ? 'bg-indigo-600/20 border-indigo-500 text-white'
-                        : 'bg-transparent border-white/10 text-gray-400 hover:text-white'
+                        ? 'bg-blue-600/10 border-blue-500 text-white'
+                        : 'bg-transparent border-white/5 text-gray-400 hover:text-white hover:bg-white/[0.01]'
                     }`}
                   >
                     {lvl}
@@ -127,7 +124,7 @@ export default function RoadmapGenerator() {
               <select
                 value={industry}
                 onChange={(e) => setIndustry(e.target.value)}
-                className="w-full text-xs bg-gray-950 border border-white/10 text-white p-3 rounded-xl focus:outline-none focus:border-indigo-500 font-medium"
+                className="w-full text-xs bg-zinc-950 border border-white/10 text-white p-3.5 rounded-xl focus:outline-none focus:border-blue-500 font-semibold transition-colors"
               >
                 <option value="Software Engineering">Software Engineering</option>
                 <option value="Design & Creative">Design & Creative</option>
@@ -146,13 +143,13 @@ export default function RoadmapGenerator() {
                     key={bdg}
                     type="button"
                     onClick={() => setBudget(bdg)}
-                    className={`py-2 rounded-lg text-xs font-semibold border transition-all ${
+                    className={`py-2.5 rounded-xl text-xs font-semibold border transition-all ${
                       budget === bdg
-                        ? 'bg-indigo-600/20 border-indigo-500 text-white'
-                        : 'bg-transparent border-white/10 text-gray-400 hover:text-white'
+                        ? 'bg-blue-600/10 border-blue-500 text-white'
+                        : 'bg-transparent border-white/5 text-gray-400 hover:text-white hover:bg-white/[0.01]'
                     }`}
                   >
-                    {bdg === 'Free' ? 'Free / Open Weights' : 'Flexible / Paid APIs'}
+                    {bdg === 'Free' ? 'Free Tools' : 'Paid APIs'}
                   </button>
                 ))}
               </div>
@@ -161,7 +158,7 @@ export default function RoadmapGenerator() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-colors glow-indigo"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors glow-blue"
             >
               Generate Guide Map <ArrowRight size={14} />
             </button>
@@ -180,10 +177,10 @@ export default function RoadmapGenerator() {
                 className="space-y-6"
               >
                 {/* Result header options */}
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white/5 border border-white/10 p-4 rounded-2xl">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white/[0.01] border border-white/[0.05] p-5 rounded-2xl">
                   <div>
-                    <h3 className="font-bold text-white text-sm">{goal} Syllabus</h3>
-                    <p className="text-[11px] text-gray-400">
+                    <h3 className="font-bold text-white text-xs uppercase tracking-wider">{goal} Syllabus</h3>
+                    <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mt-0.5">
                       Tailored to {level} level in {industry}
                     </p>
                   </div>
@@ -191,14 +188,14 @@ export default function RoadmapGenerator() {
                   <div className="flex gap-2">
                     <button 
                       onClick={handleCopyMarkdown}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-white transition-colors"
+                      className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-white transition-colors"
                     >
                       {copied ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
                       <span>{copied ? 'Copied!' : 'Copy MD'}</span>
                     </button>
                     <button 
                       onClick={() => setRoadmap(null)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-white transition-colors"
+                      className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-white transition-colors"
                     >
                       <RefreshCw size={14} />
                       <span>Reset</span>
@@ -207,17 +204,17 @@ export default function RoadmapGenerator() {
                 </div>
 
                 {/* Progress bar */}
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between gap-4">
+                <div className="p-5 rounded-2xl bg-white/[0.01] border border-white/[0.04] flex items-center justify-between gap-4">
                   <div className="flex-1">
-                    <div className="flex justify-between text-xs text-gray-400 mb-1.5 font-medium">
+                    <div className="flex justify-between text-xs text-gray-400 mb-2 font-semibold uppercase tracking-widest text-[9px]">
                       <span>Course Progress</span>
                       <span>
                         {Math.round((Object.values(completedSteps).filter(Boolean).length / roadmap.length) * 100)}% Completed
                       </span>
                     </div>
-                    <div className="w-full bg-gray-900 rounded-full h-2 overflow-hidden border border-white/5">
+                    <div className="w-full bg-zinc-950 rounded-full h-1.5 overflow-hidden border border-white/[0.02]">
                       <div 
-                        className="h-full bg-indigo-500 transition-all duration-300 shadow-[0_0_8px_rgba(99,102,241,0.5)]" 
+                        className="h-full bg-blue-500 transition-all duration-300 shadow-[0_0_8px_rgba(59,130,246,0.5)] rounded-full" 
                         style={{ width: `${(Object.values(completedSteps).filter(Boolean).length / roadmap.length) * 100}%` }}
                       />
                     </div>
@@ -225,7 +222,7 @@ export default function RoadmapGenerator() {
                 </div>
 
                 {/* Vertical Timeline */}
-                <div className="relative pl-6 space-y-6 border-l border-gray-800/60 ml-3">
+                <div className="relative pl-8 space-y-6 border-l border-white/[0.04] ml-4">
                   {roadmap.map((item, idx) => {
                     const isDone = completedSteps[item.week];
                     return (
@@ -239,34 +236,34 @@ export default function RoadmapGenerator() {
                         {/* Timeline Node Icon */}
                         <button 
                           onClick={() => toggleStep(item.week)}
-                          className={`absolute left-0 top-1 -translate-x-[31px] w-6 h-6 rounded-full flex items-center justify-center border transition-all ${
+                          className={`absolute left-0 top-1 -translate-x-[45px] w-8 h-8 rounded-full flex items-center justify-center border transition-all ${
                             isDone 
-                              ? 'bg-emerald-600 border-emerald-500 text-white shadow-[0_0_10px_rgba(16,185,129,0.4)]'
-                              : 'bg-gray-950 border-gray-800 text-gray-500 hover:border-indigo-500 hover:text-indigo-400'
+                              ? 'bg-emerald-600 border-emerald-500 text-white shadow-[0_0_12px_rgba(16,185,129,0.35)]'
+                              : 'bg-zinc-950 border-white/[0.08] text-gray-500 hover:border-blue-500 hover:text-blue-400 shadow-md'
                           }`}
                         >
-                          {isDone ? <Check size={12} strokeWidth={3} /> : <span className="text-[10px] font-bold">{idx + 1}</span>}
+                          {isDone ? <Check size={14} strokeWidth={3} /> : <span className="text-[10px] font-bold">{idx + 1}</span>}
                         </button>
 
                         {/* Content Card */}
-                        <div className={`glass-card p-5 rounded-2xl border transition-all ${
-                          isDone ? 'border-emerald-500/10 opacity-70 bg-emerald-950/5' : 'border-white/5'
+                        <div className={`glass-card p-6 rounded-2xl border transition-all ${
+                          isDone ? 'border-emerald-500/10 opacity-70 bg-emerald-950/[0.02]' : 'border-white/5'
                         }`}>
                           <div className="flex justify-between items-start gap-4">
                             <div>
-                              <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-400 font-mono">
+                              <span className="text-[9px] uppercase font-bold tracking-widest text-blue-400 font-mono">
                                 {item.week}
                               </span>
-                              <h3 className={`font-bold text-sm mt-0.5 ${isDone ? 'line-through text-gray-500' : 'text-white'}`}>
+                              <h3 className={`font-bold text-xs mt-0.5 ${isDone ? 'line-through text-gray-500' : 'text-white'}`}>
                                 {item.title}
                               </h3>
                             </div>
                             
                             <button
                               onClick={() => toggleStep(item.week)}
-                              className="text-xs text-gray-500 hover:text-indigo-400 font-semibold"
+                              className="text-xs text-gray-500 hover:text-blue-400 font-semibold"
                             >
-                              {isDone ? 'Undo mark' : 'Mark complete'}
+                              {isDone ? 'Undo mark' : 'Complete step'}
                             </button>
                           </div>
 
@@ -276,11 +273,11 @@ export default function RoadmapGenerator() {
 
                           {/* Tool Recommendations */}
                           <div className="mt-4 flex flex-wrap gap-2 items-center">
-                            <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">Suggested Tools:</span>
+                            <span className="text-[9px] uppercase font-bold text-gray-500 tracking-widest">Suggested Tools:</span>
                             {item.toolRecommendations.map((tool) => (
                               <span 
                                 key={tool} 
-                                className="text-[10px] bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 font-semibold px-2 py-0.5 rounded-lg"
+                                className="text-[9px] bg-blue-500/10 border border-blue-500/20 text-blue-300 font-bold px-2 py-0.5 rounded-lg"
                               >
                                 {tool}
                               </span>
@@ -297,10 +294,10 @@ export default function RoadmapGenerator() {
                 key="roadmap-placeholder"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="glass-card p-12 rounded-2xl border border-white/10 text-center flex flex-col items-center justify-center py-24 space-y-4"
+                className="glass-card p-12 rounded-2xl border border-white/10 text-center flex flex-col items-center justify-center py-24 space-y-4 shadow-md"
               >
-                <div className="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center text-gray-400 border border-white/10">
-                  <BookOpen size={24} />
+                <div className="h-12 w-12 rounded-full bg-white/[0.02] flex items-center justify-center text-gray-400 border border-white/10">
+                  <BookOpen size={20} />
                 </div>
                 <div className="max-w-xs space-y-1">
                   <h3 className="text-sm font-bold text-white">Generate Learning Path</h3>

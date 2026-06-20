@@ -1,113 +1,137 @@
 @import "tailwindcss";
 
 :root {
-  --background: #030712; /* zinc-950/slate-950 */
-  --foreground: #f3f4f6;
-  --card-bg: rgba(15, 23, 42, 0.45); /* semi-transparent slate-900 */
-  --card-border: rgba(255, 255, 255, 0.08);
-  --accent-primary: #6366f1; /* Indigo */
-  --accent-secondary: #06b6d4; /* Cyan */
-  --accent-tertiary: #a855f7; /* Purple */
+  --background: #09090b; /* Deep zinc background */
+  --foreground: #fafafa;
+  --card-bg: rgba(20, 20, 23, 0.35); /* Vercel/Linear slate transparency */
+  --card-border: rgba(255, 255, 255, 0.05); /* Extremely thin Vercel-like border */
+  --accent-blue: #3b82f6;
+  --accent-purple: #a855f7;
+  --font-sans: var(--font-inter);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.07) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.05) 0px, transparent 50%);
+  background-attachment: fixed;
   color: var(--foreground);
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Glassmorphism custom classes */
+/* Linear-style Glassmorphism */
 .glass-panel {
-  background: rgba(10, 10, 15, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(9, 9, 11, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .glass-card {
-  background: rgba(17, 24, 39, 0.4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(20, 20, 25, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.04);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  background: rgba(17, 24, 39, 0.65);
-  border-color: rgba(99, 102, 241, 0.25);
-  box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.15);
+  background: rgba(28, 28, 35, 0.55);
+  border-color: rgba(168, 85, 247, 0.15);
+  box-shadow: 
+    0 10px 40px -10px rgba(0, 0, 0, 0.6),
+    0 0 20px -2px rgba(168, 85, 247, 0.08);
   transform: translateY(-2px);
 }
 
 .glass-input {
-  background: rgba(17, 24, 39, 0.6);
+  background: rgba(9, 9, 11, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  color: white;
+  color: #ffffff;
   outline: none;
-  transition: all 0.2s;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-input:focus {
-  border-color: rgba(99, 102, 241, 0.5);
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  border-color: rgba(59, 130, 246, 0.4);
+  background: rgba(9, 9, 11, 0.8);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-/* Glowing text and boxes */
-.glow-indigo {
-  box-shadow: 0 0 20px -2px rgba(99, 102, 241, 0.35);
+/* Premium shadows & glows */
+.glow-blue {
+  box-shadow: 0 0 25px -5px rgba(59, 130, 246, 0.2);
 }
 
-.glow-cyan {
-  box-shadow: 0 0 20px -2px rgba(6, 182, 212, 0.35);
+.glow-purple {
+  box-shadow: 0 0 25px -5px rgba(168, 85, 247, 0.2);
 }
 
-.text-glow {
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+.text-glow-premium {
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
 }
 
-/* Custom Scrollbars */
+/* Custom Scrollbar - Minimal Vercel/Linear scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(3, 7, 18, 0.5);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.16);
 }
 
-/* Keyframes and animations */
+/* Float Animation */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-4px);
   }
 }
 
-.animate-float {
-  animation: float 4s ease-in-out infinite;
+.animate-float-subtle {
+  animation: float 5s ease-in-out infinite;
 }
 
-/* Recharts override for responsiveness and dark aesthetics */
+/* Typography polish */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+}
+
+/* Recharts premium tooltip styles override */
 .recharts-default-tooltip {
-  background-color: rgba(17, 24, 39, 0.9) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 0.5rem !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3) !important;
+  background-color: rgba(9, 9, 11, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(8px) !important;
 }
 
 .recharts-tooltip-label {
-  color: #f3f4f6 !important;
+  color: #fafafa !important;
   font-weight: 600 !important;
+  font-family: var(--font-inter) !important;
+}
+
+.recharts-legend-item-text {
+  color: #a1a1aa !important;
+  font-family: var(--font-inter) !important;
+  font-size: 11px !important;
 }
