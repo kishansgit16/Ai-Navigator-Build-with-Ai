@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 AI Navigator
 
-## Getting Started
+AI Navigator is a modern AI intelligence platform designed to help developers explore the AI ecosystem through model analytics, tool discovery, benchmark comparisons, and personalized roadmaps.
 
-First, run the development server:
+Built during the Google Build with AI Bootcamp.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 📊 Dashboard Analytics
+- Interactive dashboard
+- Ecosystem statistics
+- AI intelligence feed
+- Visual trend analysis
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🤖 Model Analytics
+- Compare leading AI models
+- Performance benchmarks
+- Capability visualizations
+- Model score insights
 
-## Learn More
+### 🛠️ Tool Discovery
+- Curated AI tools directory
+- Categorized by use case
+- Development and productivity tools
+- Design and automation tools
 
-To learn more about Next.js, take a look at the following resources:
+### 🧠 Agent Framework Explorer
+- Explore popular frameworks
+- Framework growth analytics
+- Ecosystem insights
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 📈 Benchmark Center
+- Model leaderboards
+- Interactive charts
+- Comparative analytics
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🗺️ Roadmap Generator
+- Personalized learning paths
+- Skill-based recommendations
+- AI development guidance
 
-## Deploy on Vercel
+### 🌐 Ecosystem Map
+- Visual representation of the AI landscape
+- Relationships between models, tools and frameworks
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ Tech Stack
+
+- Next.js
+- TypeScript
+- React
+- Tailwind CSS
+- Recharts
+- Framer Motion
+- Vercel
+
+---
+
+## 🚀 Live Demo
+
+[Live Website](https://ai-navigator-build-with-ai.vercel.app/)
+
+---
+
+## 📂 Repository
+
+GitHub Repository:
+
+https://github.com/kishansgit16/Ai-Navigator-Build-with-Ai
+
+---
+
+## 🔮 Upcoming Features
+
+- Global Search
+- AI Stack Advisor
+- Tool Comparison Engine
+- Live AI News Feed
+- Bookmarking System
+- Interactive Ecosystem Graph
+
+---
+
+## 🏗️ Built With
+
+- Google Build with AI Bootcamp
+- Next.js
+- TypeScript
+- Tailwind CSS
